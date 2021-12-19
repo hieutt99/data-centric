@@ -409,8 +409,6 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         except:
             cache, exists = self.cache_labels(cache_path, prefix), False  # cache
 
-        print(cache, exists)
-
         # Display cache
         nf, nm, ne, nc, n = cache.pop('results')  # found, missing, empty, corrupted, total
         if exists:
