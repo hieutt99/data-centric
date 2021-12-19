@@ -872,10 +872,10 @@ def verify_image_label(args):
     try:
         # verify images
         im = Image.open(im_file)
+        print(f"vao day {im_file} {lb_file}")
         im.verify()  # PIL verify
         shape = exif_size(im)  # image size
         assert (shape[0] > 9) & (shape[1] > 9), f'image size {shape} <10 pixels'
-        print(f"vao day {im_file} {lb_file}")
         assert im.format.lower() in IMG_FORMATS, f'invalid image format {im.format}'
         if im.format.lower() in ('jpg', 'jpeg'):
             with open(im_file, 'rb') as f:
