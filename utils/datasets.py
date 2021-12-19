@@ -868,7 +868,6 @@ def autosplit(path='../datasets/coco128/images', weights=(0.9, 0.1, 0.0), annota
 def verify_image_label(args):
     # Verify one image-label pair
     im_file, lb_file, prefix = args
-    print(im_file, lb_file)
     nm, nf, ne, nc, msg, segments = 0, 0, 0, 0, '', []  # number (missing, found, empty, corrupt), message, segments
     try:
         # verify images
@@ -883,7 +882,7 @@ def verify_image_label(args):
                 if f.read() != b'\xff\xd9':  # corrupt JPEG
                     Image.open(im_file).save(im_file, format='JPEG', subsampling=0, quality=100)  # re-save image
                     msg = f'{prefix}WARNING: corrupt JPEG restored and saved {im_file}'
-
+        print(f"vao day {im_file} {lb_file}")
         # verify labels
         if os.path.isfile(lb_file):
             nf = 1  # label found
