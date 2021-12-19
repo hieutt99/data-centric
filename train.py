@@ -176,6 +176,8 @@ def train(hyp,
     # Image sizes
     grid_size = max(int(model.stride.max()), 32)
     LOGGER.info(f"check check {grid_size}, {args.cache}, {train_path}, ")
+    LOGGER.info(f"check check {hyp}")
+    LOGGER.info(f"check check {args.image_weights}")
     nl = model.model[-1].nl  # number of detection layers (used for scaling hyp['obj'])
     img_size = check_img_size(args.img_size, grid_size, floor=grid_size * 2)  # verify img_size is gs-multiple
 
