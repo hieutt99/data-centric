@@ -419,6 +419,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 
         # Read cache
         [cache.pop(k) for k in ('hash', 'version', 'msgs')]  # remove items
+        print(cache)
         labels, shapes, self.segments = zip(*cache.values())
         self.labels = list(labels)
         self.shapes = np.array(shapes, dtype=np.float64)

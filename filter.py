@@ -16,9 +16,10 @@ files = os.listdir(IMAGE_DIR)
 print(len(files))
 
 loader = create_dataloader(
-    path=DATA_DIR, imgsz=640, 
+    path=IMAGE_DIR, imgsz=640, stride=32,
     batch_size=4, 
     rect=True, 
+    cache=False, 
 )
 
 for batch in loader:
