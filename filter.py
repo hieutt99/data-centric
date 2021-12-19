@@ -2,7 +2,6 @@ import os, sys
 
 from utils.datasets import create_dataloader
 
-
 CUR_DIR = os.getcwd()
 BASE_DIR = os.path.dirname(CUR_DIR)
 DATA_DIR = os.path.join(BASE_DIR, 'dataset')
@@ -11,16 +10,16 @@ IMAGE_DIR = os.path.join(DATA_DIR, 'images', MODE)
 LABEL_DIR = os.path.join(DATA_DIR, 'labels', MODE)
 
 
-files = os.listdir(IMAGE_DIR)
+# files = os.listdir(IMAGE_DIR)
 
-print(len(files))
+# print(len(files))
 
-loader = create_dataloader(
-    path=IMAGE_DIR, imgsz=640, stride=32,
-    batch_size=4, 
-    rect=True, 
-    cache=False, 
-)
+from temp import LoadImagesAndLabels
 
-for batch in loader:
-    print(batch)
+dataset = LoadImagesAndLabels(DATA_DIR, augment=True)
+
+for item in dataset:
+    print(item.size())
+
+# for batch in loader:
+#     print(batch)
