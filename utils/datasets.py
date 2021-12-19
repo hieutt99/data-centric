@@ -875,6 +875,7 @@ def verify_image_label(args):
         im.verify()  # PIL verify
         shape = exif_size(im)  # image size
         assert (shape[0] > 9) & (shape[1] > 9), f'image size {shape} <10 pixels'
+        print(f"vao day {im_file} {lb_file}")
         assert im.format.lower() in IMG_FORMATS, f'invalid image format {im.format}'
         if im.format.lower() in ('jpg', 'jpeg'):
             with open(im_file, 'rb') as f:
@@ -882,7 +883,7 @@ def verify_image_label(args):
                 if f.read() != b'\xff\xd9':  # corrupt JPEG
                     Image.open(im_file).save(im_file, format='JPEG', subsampling=0, quality=100)  # re-save image
                     msg = f'{prefix}WARNING: corrupt JPEG restored and saved {im_file}'
-        print(f"vao day {im_file} {lb_file}")
+        
         # verify labels
         if os.path.isfile(lb_file):
             nf = 1  # label found
